@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>INFO 450 - Week 2</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+/* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+/* Two-column layout */
+      .left-column-half {
+        color: #777;
+        width: 50%;
+        height: 92%;
+        float: left;
+      }
+      .right-column-half {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+        line-height: .9em;
+      }
+
+    table, td, th {
+        border: 1px solid black;
+        font-size: .9em;
+    }
+
+    quote {
+      font-style: italic;
+
+    }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+# INFO 450 Spring 2021
+
+# Week 2
+
+## Development Processes
+
+---
+# Homework Review
+
+Did you get me your github repository?  I hope so!
+
+---
+# Tonight's Agenda
+
+* Github overview
+* CICD (Continuous integration, continuous deployment)
+
+---
+# Version Control Software: 
+
+https://www.atlassian.com/git/tutorials/what-is-version-control
+
+```
+Version control systems are a category of software tools that help a software
+team manage changes to source code over time. Version control software keeps
+track of every modification to the code in a special kind of database.
+If a mistake is made, developers can turn back the clock and compare earlier
+versions of the code to help fix the mistake while minimizing disruption to
+all team members.
+```
+
+* Github
+
+Github.com is a SaaS platform for hosting source code for version control.
+---
+# How do we use Version Control?
+
+Version Control / git support many capabilities to help us manage our projects.
+
+* Version control - What was my code yesterday?
+* Branching - "Feature" branch to isolate changes from other developers
+* Collaboration - Multiple developers can safely work on the same code
+* Tagging/Labeling - Mark some code for a release or a point in time to be able to roll back with confidence.
+
+---
+# How will we use Github?
+
+Install Visual Studio Code
+
+Install (it may already be installed)  'git' plugin, NOT github plugin:
+
+* https://code.visualstudio.com/docs/editor/versioncontrol   (use Git plugin, not Github plugin)
+
+---
+# Things to watch for in demo
+
+You will be 'forking' a repository of mine each week for homework
+
+You will make your changes on your laptop/computer and pushing the changes back to github
+
+When you're confident it works, you will create a 'pull request' for me to merge it back into my repository
+
+---
+# Live Demo of using Github via VS Code
+
+* clone
+* add
+* commit
+* get
+* push
+* merge
+* branch
+
+* Pull Request in Github.com
+
+---
+# Github questions?
+
+---
+# CICD - Build pipelines
+
+The greatest innovation in software development EVER is an automatic build pipeline.
+
+You write test cases that truly test and validate your code.
+
+Write your test cases to make yourself comfortable with automatic deployment of your application, to <strong>production</strong>.
+
+production - live traffic, customer facing, no going back (caveat, you can always go back, but it's embarrassing)
+
+---
+# Tools
+
+The most popular tools for building pipelines are things like Jenkins, Travis CI, Github Actions (new, and what we'll use)
+
+Our pipelines will:
+
+* Validate coding standards, PEP-8, naming conventions, etc.
+ * isort
+ * pylint
+ * black
+
+* Build Your Code
+ * valid python
+ * build a 'package' (we'll learn about that soon)
+ * run <strong>pytest</strong> for test cases
+
+* PEP-8:  https://www.python.org/dev/peps/pep-0008/
+
+
+## <a href="https://github.com/vcu-chfauerbach/test-repo1/actions" target="_blank">Embarrassing</a>, but show students how long it took me to get a working 'BASIC' example of python
+
+---
+# Python code organization
+
+We will start out using 'pytest' to execute your application tests.
+
+https://docs.pytest.org/en/latest/goodpractices.html
+
+
+```
+setup.py
+mypkg/
+    __init__.py
+    app.py
+    view.py
+tests/
+    test_app.py
+    test_view.py
+    ...
+```
+
+* setup.py - Information about your program.  This is your application name or module name.   matches the top level for code - 'mypkg' in this example
+* __init__.py - for us, it will mostly be a blank file, but required to indicate 'mypkg' is a python... package
+* tests - This is where we will build our unit tests
+
+---
+# Unit Tests
+
+In computer programming, unit testing is a software testing method by which individual units of source code—sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures—are tested to determine whether they are fit for use.
+
+https://en.wikipedia.org/wiki/Unit_testing
+
+- Testing small units of code, usually functions.
+- Known inputs, known outputs to make sure you don't break your functions
+- Always test edge cases, boundaries, etc.
+ - For instance, if you have a function that is expected to add two numbers, what happens if you pass Strings to the function?
+
+---
+# Simple test case
+<a href="example_test.py" target="_blank">example_test.py</a>:
+```python
+"""File to hold a class definition to test code"""
+
+import unittest
+
+
+class TestListElements(unittest.TestCase):
+    """Holding class to organize our test cases."""
+
+    def test_sorting():
+        """Test to make sure the sorting function works with a simple list"""
+
+        known_input = [5,4,1,2,3]
+        expected_output = [1,2,3,4,5]
+        assertListEqual(known_input, known_output)
+```
+
+
+
+
+---
+
+
+---
+---
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
