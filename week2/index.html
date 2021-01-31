@@ -224,10 +224,157 @@ class TestListElements(unittest.TestCase):
         assertListEqual(known_input, known_output)
 ```
 
+---
+# pylint
+
+https://www.pylint.org/
+
+* Coding Standard
+ * checking line-code's length,
+ * checking if variable names are well-formed according to your coding standard
+ * checking if imported modules are used
+
+* Error detection
+ * checking if declared interfaces are truly implemented
+ * checking if modules are imported
+
+Pylint is an incredibly useful tool for static code analysis. 
+
+It provides a simple score out of 10, a detailed output on what to fix, and the ability to ignore things you do not believe in.  - Medium <a href=" https://doedotdev.medium.com/pylint-static-code-analysis-python-script-with-adjustable-threshold-b0d6d2c8647b#:~:text=Pylint%20is%20an%20incredibly%20useful,you%20do%20not%20believe%20in." target="_blank">post</a> by dotdotdev
+
+## Part of grading will be 'your' pylint score.  10 is best, less is ... less best.
+
+
+---
+# isort
+
+https://pypi.org/project/isort/
+
+<small>isort is a Python utility / library to sort imports alphabetically, and automatically separated into sections and by type. It provides a command line utility, Python library and plugins for various editors to quickly sort all your imports.</small>
+
+From:
+```python
+import requests
+import sys
+import os
+```
+
+To:
+```python
+import os
+import sys
+
+import requests
+```
+
+## Part of grading will be isort.  Our CICD process will NOT allow improperly formatted imports.
+
+---
+# black
+
+https://github.com/psf/black
+
+Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting. In return, Black gives you speed, determinism, and freedom from pycodestyle nagging about formatting. You will save time and mental energy for more important matters.
+
+Blackened code looks the same regardless of the project you're reading. Formatting becomes transparent after a while and you can focus on the content instead.
+
+<img src="showblack.png" width="70%"/>
+
+## Part of grading will be black.  Our CICD process will NOT allow code that needs to be 'blackened'
+
+---
+# pytest
+
+https://docs.pytest.org/en/stable/
+
+The pytest framework makes it easy to write small tests, yet scales to support complex functional testing for applications and libraries.
+
+```python
+# content of test_sample.py
+def inc(x):
+    return x + 1
+
+def test_answer():
+    assert inc(3) == 5
+```
+FAILED
+
+---
+#Output
+
+```bash
+$ pytest
+=========================== test session starts ============================
+platform linux -- Python 3.x.y, pytest-6.x.y, py-1.x.y, pluggy-0.x.y
+cachedir: $PYTHON_PREFIX/.pytest_cache
+rootdir: $REGENDOC_TMPDIR
+collected 1 item
+
+test_sample.py F                                                     [100%]
+
+================================= FAILURES =================================
+_______________________________ test_answer ________________________________
+
+    def test_answer():
+>       assert inc(3) == 5
+E       assert 4 == 5
+E        +  where 4 = inc(3)
+
+test_sample.py:6: AssertionError
+========================= short test summary info ==========================
+FAILED test_sample.py::test_answer - assert 4 == 5
+============================ 1 failed in 0.12s =============================
+```
+
+### Part of grading will be pytest.  Our CICD process will allow allow partial failures will be allowed but will be the major determination of your grades.
+
+---
+# Install these tools
+
+For these slides and in class, I will be showing you how to manage a Python environment with 'pipenv'.  
+
+You are welcome to use `pipenv` or you can use Anaconda.
+
+I'm a command line person, so, that's my default 
+
+```bash
+ $ pipenv --python 3.8
+ $ pipenv shell
+ $ pipenv install pytest
+ $ pipenv install black==20.8b1
+ $ pipenv install isort
+ $ pipenv install pylint
+ $ pipenv run black .
+ $ pipenv run isort .
+ $ pipenv run pytest .
+```
+
 
 
 
 ---
+# setup.py
+
+now let's make that top level setup.py file:
+
+```bash
+$ cd test-repo1
+$ cat setup.py
+"""Setup file to describe my project."""
+
+from setuptools import find_packages, setup
+
+setup(
+    name="testrepo1",
+    version="0.1",
+    description="Test repository",
+    author="Chris Fauerbach",
+    author_email="chfauerbach@vcu.edu",
+    packages=find_packages(),
+)
+
+
+```
 
 
 ---
