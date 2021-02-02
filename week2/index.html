@@ -375,9 +375,71 @@ setup(
 
 
 ```
+This file describes your application which is then used in some of the testing and packaging components we will use down the road.
+
+For now, copy and paste, update your name, etc when you need to.
 
 
 ---
+# Docstrings
+
+One of the error messages we saw regularly, was docstrings.   These are blocks of comments within your code that define what a module, class and function do.   
+
+```python
+
+def my_function():
+    """my_function does the work to determine all the things."""
+    pass
+```
+ 
+This needs to be included, and descriptive, at the top of each of your files (module), each of your classes (we'll cover soon) and each function.   Documentation is critical for any application. 
+
+Get in the habit now, so it's easier later.
+
+---
+# Naming conventions
+
+snake case:  All functions and variables should be fully descriptive words/phrases, using an underscore _ as a space
+```python
+
+def my_function():
+# not MyFunction, or myfunction
+
+number_of_wheels = 4
+# not numberOfWheels = 4
+
+```
+All classes should be camel case:
+
+```python
+
+class Automobile:
+
+class SkyScraper:
+
+```
+---
+# Homework
+
+Due Feb 8th at 11:59:59 PM
+
+Fork my test repository into your account:
+
+https://github.com/vcu-chfauerbach/test-repo1  
+
+Change the README.md file (It's Markdown, double 'new line' for a new line)
+
+Add your favorite tool from what we talked about today (black, pylint, isort).
+
+I don't care which one.  Just put one of them in your README.md file and get it pushed back to your github account.
+
+Then, in Canvas, send me the URL to your README.md file.   As an example, mine is:
+
+https://github.com/vcu-chfauerbach/test-repo1/blob/main/README.md
+
+You do NOT have to create a Pull Request to send it back to me.
+
+
 ---
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
